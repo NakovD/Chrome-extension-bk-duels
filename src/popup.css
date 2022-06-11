@@ -1,0 +1,99 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 300px;
+  padding: 40px 20px;
+  background-image: linear-gradient(to bottom, #141e30, #243b55);
+  border-radius: 5px;
+}
+body h1 {
+  color: #FFFFFF;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 30px;
+}
+
+fieldset {
+  border: none;
+  outline: none;
+}
+fieldset input[type=text],
+fieldset input[type=number] {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #FFFFFF;
+  background-color: transparent;
+  color: #FFFFFF;
+  padding: 10px 5px;
+  margin-bottom: 20px;
+}
+fieldset input[type=text]::-moz-placeholder, fieldset input[type=number]::-moz-placeholder {
+  color: #FFFFFF;
+}
+fieldset input[type=text]:-ms-input-placeholder, fieldset input[type=number]:-ms-input-placeholder {
+  color: #FFFFFF;
+}
+fieldset input[type=text]::placeholder,
+fieldset input[type=number]::placeholder {
+  color: #FFFFFF;
+}
+fieldset input[type=text]::-webkit-outer-spin-button, fieldset input[type=text]::-webkit-inner-spin-button,
+fieldset input[type=number]::-webkit-outer-spin-button,
+fieldset input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  display: none;
+}
+fieldset label {
+  color: #FFFFFF;
+  position: relative;
+  display: block;
+  margin-bottom: 20px;
+}
+fieldset label input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+  left: 55%;
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+fieldset label input[type=checkbox]:checked ~ .fake-checkbox::before {
+  display: block;
+}
+fieldset label .fake-checkbox {
+  width: 20px;
+  height: 20px;
+  background-color: #03e9f4;
+  position: absolute;
+  left: 55%;
+  border-radius: 3px;
+  z-index: 1;
+}
+fieldset label .fake-checkbox::before {
+  content: "";
+  display: none;
+  width: 15px;
+  height: 10px;
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  border-bottom: 3px solid #FFFFFF;
+  border-left: 3px solid #FFFFFF;
+  transform: rotate(-45deg) scale(0.8);
+}
+
+form button {
+  border: 1px solid #03e9f4;
+  color: #03e9f4;
+  padding: 10px;
+  background-color: transparent;
+  cursor: pointer;
+}/*# sourceMappingURL=popup.css.map */

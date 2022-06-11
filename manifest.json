@@ -1,0 +1,27 @@
+{
+    "name": "BK dueling extension",
+    "description": "This extension should automatically fight duels for levels lower than 7.",
+    "version": "1.0",
+    "manifest_version": 3,
+    "icons": {
+        "16": "src/favicon.ico",
+        "48": "src/favicon.ico",
+        "128": "src/favicon.ico"
+    },
+    "action": {
+        "default_popup": "src/popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://s3-bg.battleknight.gameforge.com/*"
+            ],
+            "js": [
+                "dist/index.js"
+            ]
+        }
+    ],
+    "background": {
+        "service_worker": "src/background.js"
+    }
+}
