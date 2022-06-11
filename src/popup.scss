@@ -9,6 +9,10 @@
 $colorWhite: #FFFFFF;
 $colorCyan: #03e9f4;
 
+%fake_checkbox_focus {
+    outline: -webkit-focus-ring-color auto 1px;
+}
+
 
 body {
     width: 300px;
@@ -58,6 +62,10 @@ fieldset {
         display: block;
         margin-bottom: 20px;
 
+        &:focus>.fake-checkbox {
+            @extend %fake_checkbox_focus;
+        }
+
         input[type="checkbox"] {
             width: 20px;
             height: 20px;
@@ -81,7 +89,7 @@ fieldset {
             z-index: 1;
 
             &:focus-visible {
-                outline: -webkit-focus-ring-color auto 1px;
+                @extend %fake_checkbox_focus;
             }
 
             &::before {

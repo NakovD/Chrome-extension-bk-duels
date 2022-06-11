@@ -90,13 +90,13 @@ const shortDuelAttack = ({ enemyNode, allEnemiesCache, topLvlThreshold, bottomLv
     const canAttackEnemy = !quickAttackButton?.classList.contains('disabled');
     if (!canAttackEnemy) return getNextEnemyToTryDuel({ allEnemiesCache, topLvlThreshold, bottomLvlThreshold, lastAttackedEnemyIndex: lastAttackedEnemyIndex + 1 });
     localStorage.setItem(localStorageCurrentStepLabel, "6");
-    localStorage.setItem(localStoragelastAttackedEnemyLabel, lastAttackedEnemyIndex.toString());
+    localStorage.setItem(localStoragelastAttackedEnemyLabel, `${lastAttackedEnemyIndex + 1}`);
     quickAttackButton?.click();
 }
 
 const waitAfterDuel = () => {
-    const amountToWaitAfterDuel = getAmountToWaitAfterDuel(hasRegenElixir);
     if (currentStep !== 6) return;
+    const amountToWaitAfterDuel = getAmountToWaitAfterDuel(hasRegenElixir);
     const cbToCallAfterWaitIsOver = () => {
         localStorage.setItem(localStorageCurrentStepLabel, "0");
         location.reload();
