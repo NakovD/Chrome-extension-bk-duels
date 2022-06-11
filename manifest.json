@@ -4,9 +4,9 @@
     "version": "1.0",
     "manifest_version": 3,
     "icons": {
-        "16": "src/favicon.ico",
-        "48": "src/favicon.ico",
-        "128": "src/favicon.ico"
+        "16": "public/favicon.ico",
+        "48": "public/favicon.ico",
+        "128": "public/favicon.ico"
     },
     "action": {
         "default_popup": "src/popup.html"
