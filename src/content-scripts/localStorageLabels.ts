@@ -1,4 +1,5 @@
 import { ILocalStorageData } from './models';
+import { nameof } from 'ts-simple-nameof';
 
 export default {
     currentStepLabel: nameof<ILocalStorageData>(x => x.currentStep),
@@ -7,5 +8,5 @@ export default {
     topLvlThresholdLabel: nameof<ILocalStorageData>(obj => obj.topLvlThreshold),
     bottomLvlThresholdLabel: nameof<ILocalStorageData>(obj => obj.bottomLvlThreshold),
     bkExtensionsWorkingLabel: nameof<ILocalStorageData>(obj => obj.bkExtensionsWorking),
-    hasRegexElixirLabel: nameof<ILocalStorageData>(obj => obj.hasRegexElixir),
+    hasRegenElixirLabel: nameof<ILocalStorageData>(obj => obj.hasRegenElixir),
 };

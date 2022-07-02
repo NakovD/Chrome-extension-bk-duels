@@ -1,11 +1,10 @@
 import labels from './localStorageLabels';
 import { parseBoolFromString, getAmountToWaitAfterDuel } from './helpers';
+import localStorageData from './localStorageData';
 
-const { currentStepLabel, lastAttackedEnemyIndexLabel, hasRegexElixirLabel } = labels;
-const currentStep = +(localStorage.getItem(currentStepLabel) as string);
+const { currentStepLabel, lastAttackedEnemyIndexLabel } = labels;
 
-const _hasRegenElixir = localStorage.getItem(hasRegexElixirLabel) as string;
-const hasRegenElixir = parseBoolFromString(_hasRegenElixir);
+const { currentStep, hasRegenElixir } = localStorageData;
 
 interface INextEnemyToDuelArgs {
     allEnemiesCache?: Element[] | NodeListOf<Element>;
@@ -41,9 +40,9 @@ const getNextEnemyToTryDuel = ({
 
 const getAllEnemiesFromSpecificLevels = (upperTreshold: number, lowerTreshold: number) => {
     const allEnemiesOnThisPage = document.querySelectorAll(
-        '#highscoreTable tbody tr:not(.userSeperator)'
+        '#highscoreTable tbody tr:not(.userSeperator):not(:first-child)'
     );
-    if (!upperTreshold && !lowerTreshold) return allEnemiesOnThisPage;
+    if (!upperTreshold || !lowerTreshold) return allEnemiesOnThisPage;
     const allEnemiesInTresholds = Array.from(allEnemiesOnThisPage).filter(e => {
         const currentEnemyLevelBox = e.querySelector('.highscore04') as HTMLElement;
         const currentEnemyLevel = Number(currentEnemyLevelBox?.textContent);

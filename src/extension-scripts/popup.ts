@@ -2,7 +2,7 @@ const submitButton = document.querySelector('#bk-submit-data') as HTMLButtonElem
 const highscorePage = document.querySelector('#highscore-page') as HTMLInputElement;
 const topLvlThreshold = document.querySelector('#top-lvl-threshold') as HTMLInputElement;
 const bottomLvlThreshold = document.querySelector('#bottom-lvl-threshold') as HTMLInputElement;
-const hasRegexElixir = document.querySelector('#has-regen-elixir') as HTMLInputElement;
+const hasRegenElixir = document.querySelector('#has-regen-elixir') as HTMLInputElement;
 
 submitButton.addEventListener('click', function () {
     const data = {
@@ -10,7 +10,7 @@ submitButton.addEventListener('click', function () {
         highscorePage: highscorePage.value,
         topLvlThreshold: topLvlThreshold.value,
         bottomLvlThreshold: bottomLvlThreshold.value,
-        hasRegexElixir: hasRegexElixir.checked,
+        hasRegenElixir: hasRegenElixir.checked,
     };
 
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {

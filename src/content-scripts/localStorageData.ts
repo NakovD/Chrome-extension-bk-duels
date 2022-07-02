@@ -8,26 +8,28 @@ const {
     lastAttackedEnemyIndexLabel,
     topLvlThresholdLabel,
     bottomLvlThresholdLabel,
-    hasRegexElixirLabel,
+    hasRegenElixirLabel,
     bkExtensionsWorkingLabel,
 } = labels;
 
-const currentLocalStorageData = {
-    currentStep: localStorage.getItem(currentStepLabel),
-    highscorePage: localStorage.getItem(highscorePageLabel),
-    lastAttackedEnemyIndex: localStorage.getItem(lastAttackedEnemyIndexLabel),
-    topLvlThreshold: localStorage.getItem(topLvlThresholdLabel),
-    bottomLvlThreshold: localStorage.getItem(bottomLvlThresholdLabel),
-    hasRegexElixir: localStorage.getItem(hasRegexElixirLabel),
-};
-
+const currentStep = localStorage.getItem(currentStepLabel);
+const highscorePage = localStorage.getItem(highscorePageLabel);
+const lastAttackedEnemyIndex = localStorage.getItem(lastAttackedEnemyIndexLabel) ?? 0;
+const topLvlThreshold = localStorage.getItem(topLvlThresholdLabel) ?? Number.MAX_SAFE_INTEGER;
+const bottomLvlThreshold = localStorage.getItem(bottomLvlThresholdLabel) ?? Number.MIN_SAFE_INTEGER;
+const hasRegenElixir = localStorage.getItem(hasRegenElixirLabel) ?? 'false';
 const isExtensionWorking = localStorage.getItem(bkExtensionsWorkingLabel) ?? 'false';
 
-const isAnyDataNull = Object.values(currentLocalStorageData).some(el => el === null);
+const isAnyNeededDataNull = currentStep && highscorePage;
 
 const localStorageData: ILocalStorageData = {
-    ...(currentLocalStorageData as unknown as ILocalStorageData),
-    bkExtensionsWorking: isAnyDataNull ? isAnyDataNull : parseBoolFromString(isExtensionWorking),
+    currentStep: currentStep ? +currentStep : 0,
+    highscorePage: highscorePage ? +highscorePage : 0,
+    lastAttackedEnemyIndex: +lastAttackedEnemyIndex as number,
+    topLvlThreshold: +topLvlThreshold as number,
+    bottomLvlThreshold: +bottomLvlThreshold as number,
+    hasRegenElixir: parseBoolFromString(hasRegenElixir),
+    bkExtensionsWorking: isAnyNeededDataNull ? false : parseBoolFromString(isExtensionWorking),
 };
 
 export default localStorageData;

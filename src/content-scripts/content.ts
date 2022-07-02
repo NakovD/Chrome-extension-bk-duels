@@ -8,7 +8,7 @@ const {
     highscorePageLabel,
     topLvlThresholdLabel,
     bottomLvlThresholdLabel,
-    hasRegexElixirLabel,
+    hasRegenElixirLabel,
     bkExtensionsWorkingLabel,
 } = labels;
 
@@ -26,7 +26,7 @@ const {
 const health = +((document.querySelector('#lifeCount') as HTMLElement).textContent as string);
 
 const goToHighScores = () => {
-    if (currentStep) {
+    if (currentStep !== 0) {
         return;
     }
     const highScoresButton = document.querySelector('#navScores') as HTMLButtonElement;
@@ -127,13 +127,14 @@ const reinitExtension = (bkExtensionsWorking: boolean) => {
 reinitExtension(bkExtensionsWorking);
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    const { highscorePage, topLvlThreshold, bottomLvlThreshold, hasRegexElixir } = request;
+    const { highscorePage, topLvlThreshold, bottomLvlThreshold, hasRegenElixir } = request;
     localStorage.clear();
     localStorage.setItem(highscorePageLabel, highscorePage);
     localStorage.setItem(topLvlThresholdLabel, topLvlThreshold);
     localStorage.setItem(bottomLvlThresholdLabel, bottomLvlThreshold);
     localStorage.setItem(bkExtensionsWorkingLabel, 'true');
-    localStorage.setItem(hasRegexElixirLabel, hasRegexElixir);
+    localStorage.setItem(hasRegenElixirLabel, hasRegenElixir);
+    localStorage.setItem(currentStepLabel, '0');
 
     fightDuels();
     sendResponse({ farewell: 'goodbye' });

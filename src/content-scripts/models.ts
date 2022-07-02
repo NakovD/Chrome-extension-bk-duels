@@ -5,7 +5,7 @@ export interface ILocalStorageData {
     topLvlThreshold: number;
     bottomLvlThreshold: number;
     bkExtensionsWorking: boolean;
-    hasRegexElixir: boolean;
+    hasRegenElixir: boolean;
 }
 
 export interface IConstants {
