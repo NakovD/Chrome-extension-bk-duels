@@ -1,20 +1,27 @@
-import constants from './constants';
 import { parseBoolFromString } from './helpers';
 import { ILocalStorageData } from './models';
+import labels from './localStorageLabels';
 
-const { localStorageCurrentStepLabel, extensionWorkingLabel, localStoragelastAttackedEnemyLabel } =
-    constants;
+const {
+    currentStepLabel,
+    highscorePageLabel,
+    lastAttackedEnemyIndexLabel,
+    topLvlThresholdLabel,
+    bottomLvlThresholdLabel,
+    hasRegexElixirLabel,
+    bkExtensionsWorkingLabel,
+} = labels;
 
 const currentLocalStorageData = {
-    currentStep: localStorage.getItem(localStorageCurrentStepLabel),
-    highscorePage: localStorage.getItem('highscorePage'),
-    lastAttackedEnemyIndex: localStorage.getItem(localStoragelastAttackedEnemyLabel),
-    topLvlThreshold: localStorage.getItem('topLvlThreshold'),
-    bottomLvlThreshold: localStorage.getItem('bottomLvlThreshold'),
-    hasRegexElixir: localStorage.getItem('hasRegexElixir'),
+    currentStep: localStorage.getItem(currentStepLabel),
+    highscorePage: localStorage.getItem(highscorePageLabel),
+    lastAttackedEnemyIndex: localStorage.getItem(lastAttackedEnemyIndexLabel),
+    topLvlThreshold: localStorage.getItem(topLvlThresholdLabel),
+    bottomLvlThreshold: localStorage.getItem(bottomLvlThresholdLabel),
+    hasRegexElixir: localStorage.getItem(hasRegexElixirLabel),
 };
 
-const isExtensionWorking = localStorage.getItem(extensionWorkingLabel) ?? 'false';
+const isExtensionWorking = localStorage.getItem(bkExtensionsWorkingLabel) ?? 'false';
 
 const isAnyDataNull = Object.values(currentLocalStorageData).some(el => el === null);
 

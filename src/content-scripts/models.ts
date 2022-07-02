@@ -9,9 +9,6 @@ export interface ILocalStorageData {
 }
 
 export interface IConstants {
-    localStorageCurrentStepLabel: string;
-    localStoragelastAttackedEnemyLabel: string;
-    extensionWorkingLabel: string;
     FIVE_MINS: number;
     OVER_TIME: number;
     minimumHealth: number;
