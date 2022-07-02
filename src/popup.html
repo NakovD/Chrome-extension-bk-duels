@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <link
+            rel="stylesheet"
+            href="popup.css" />
+    </head>
 
-<head>
-    <link rel="stylesheet" href="popup.css">
-</head>
+    <body>
+        <h1>Battle Knight Extension dueler</h1>
+        <form id="bk-form">
+            <fieldset>
+                <input
+                    id="highscore-page"
+                    placeholder="Highscore Page"
+                    type="number" />
+                <input
+                    id="top-lvl-threshold"
+                    placeholder="Top Level Threshold"
+                    type="number" />
+                <input
+                    id="bottom-lvl-threshold"
+                    placeholder="Bottom Level Threshold"
+                    type="number" />
+                <label for="has-regen-elixir"
+                    >Do you have regex elixir?
+                    <input
+                        type="checkbox"
+                        id="has-regen-elixir" />
+                    <span class="fake-checkbox"></span>
+                </label>
+            </fieldset>
+            <button id="bk-submit-data">Start dueling</button>
+        </form>
 
-<body>
-    <h1>Battle Knight Extension dueler</h1>
-    <form id="bk-form">
-        <fieldset>
-            <input id="highscore-page" placeholder="Highscore Page" type="number">
-            <input id="top-lvl-threshold" placeholder="Top Level Threshold" type="number">
-            <input id="bottom-lvl-threshold" placeholder="Bottom Level Threshold" type="number">
-            <label for="has-regen-elixir">Do you have regex elixir?
-                <input type="checkbox" id="has-regen-elixir">
-                <span class="fake-checkbox"></span>
-            </label>
-        </fieldset>
-        <button id="bk-submit-data">
-            Start dueling
-        </button>
-    </form>
-
-    <script src="../dist/extensionScripts.js"></script>
-</body>
-
+        <script src="../dist/extensionScripts.js"></script>
+    </body>
 </html>

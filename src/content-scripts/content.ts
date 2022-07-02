@@ -1,29 +1,39 @@
-import constants from "./constants";
-import { getNextEnemyToTryDuel, tryToDuel, attackPhase2, waitAfterDuel } from "./attackingLogic";
-import localStorageData from "./localStorageData";
+import constants from './constants';
+import { getNextEnemyToTryDuel, tryToDuel, attackPhase2, waitAfterDuel } from './attackingLogic';
+import localStorageData from './localStorageData';
 
 //labels
-const { localStorageCurrentStepLabel, extensionWorkingLabel, localStoragelastAttackedEnemyLabel } = constants;
+const { localStorageCurrentStepLabel, extensionWorkingLabel, localStoragelastAttackedEnemyLabel } =
+    constants;
 
-const { currentStep, highscorePage, lastAttackedEnemyIndex, topLvlThreshold, bottomLvlThreshold, bkExtensionsWorking } = localStorageData;
+const {
+    currentStep,
+    highscorePage,
+    lastAttackedEnemyIndex,
+    topLvlThreshold,
+    bottomLvlThreshold,
+    bkExtensionsWorking,
+} = localStorageData;
 
 const { minimumHealth } = constants;
 
 const health = +((document.querySelector('#lifeCount') as HTMLElement).textContent as string);
 
 const goToHighScores = () => {
-    if (currentStep) { return; }
+    if (currentStep) {
+        return;
+    }
     const highScoresButton = document.querySelector('#navScores') as HTMLButtonElement;
     localStorage.setItem(localStorageCurrentStepLabel, '1');
     highScoresButton.click();
-}
+};
 
 const sortBylevel = () => {
     if (currentStep !== 1) return;
     const sortByLevelIcon = document.querySelector('.iconLevel') as HTMLElement;
     localStorage.setItem(localStorageCurrentStepLabel, '2');
     sortByLevelIcon.click();
-}
+};
 
 const choosePage = () => {
     if (currentStep !== 2) return;
@@ -31,22 +41,24 @@ const choosePage = () => {
     select.value = highscorePage.toString();
     localStorage.setItem(localStorageCurrentStepLabel, '3');
     select.dispatchEvent(new Event('change'));
-}
+};
 
 const checkHealth = () => {
     if (health <= minimumHealth) return true;
     return false;
-}
+};
 
 const heal = () => {
     const potions = document.querySelectorAll('.sourceInventory');
     if (!potions.length) return false;
     const firstPotion = potions[0].querySelector('a') as HTMLAnchorElement;
     firstPotion.click();
-    const confirmHealButton = document.querySelector('#topPotionPopup .button:first-child') as HTMLButtonElement;
+    const confirmHealButton = document.querySelector(
+        '#topPotionPopup .button:first-child'
+    ) as HTMLButtonElement;
     confirmHealButton.click();
     return true;
-}
+};
 
 const handleHealingResult = () => {
     setTimeout(() => {
@@ -59,7 +71,7 @@ const handleHealingResult = () => {
 
         localStorage.setItem(extensionWorkingLabel, 'false');
     }, 1000);
-}
+};
 
 const fightDuels = () => {
     const needToHeal = checkHealth();
@@ -70,16 +82,21 @@ const fightDuels = () => {
 
     switch (currentStep) {
         case 0:
-            goToHighScores()
+            goToHighScores();
             break;
         case 1:
-            sortBylevel()
+            sortBylevel();
             break;
         case 2:
-            choosePage()
+            choosePage();
             break;
         case 3:
-            getNextEnemyToTryDuel({ allEnemiesCache: undefined, topLvlThreshold, bottomLvlThreshold, lastAttackedEnemyIndex })
+            getNextEnemyToTryDuel({
+                allEnemiesCache: undefined,
+                topLvlThreshold,
+                bottomLvlThreshold,
+                lastAttackedEnemyIndex,
+            });
             break;
         case 4:
             tryToDuel(lastAttackedEnemyIndex);
@@ -94,12 +111,12 @@ const fightDuels = () => {
             console.log('we are in the default statement');
             break;
     }
-}
+};
 
 const reinitExtension = (bkExtensionsWorking: boolean) => {
     if (!bkExtensionsWorking) return;
     fightDuels();
-}
+};
 
 reinitExtension(bkExtensionsWorking);
 
@@ -113,6 +130,5 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     localStorage.setItem('hasRegexElixir', hasRegexElixir);
 
     fightDuels();
-    sendResponse({ farewell: "goodbye" });
+    sendResponse({ farewell: 'goodbye' });
 });
-

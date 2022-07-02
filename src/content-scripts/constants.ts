@@ -1,4 +1,4 @@
-import { IConstants } from "./models";
+import { IConstants } from './models';
 
 const constants: IConstants = {
     localStorageCurrentStepLabel: 'currentStep',
@@ -7,7 +7,7 @@ const constants: IConstants = {
     //other
     FIVE_MINS: 300_000,
     OVER_TIME: 30_000,
-    minimumHealth: 26
+    minimumHealth: 26,
 };
 
 export default Object.freeze(constants);

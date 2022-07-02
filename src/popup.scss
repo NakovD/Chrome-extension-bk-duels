@@ -6,13 +6,12 @@
     padding: 0;
 }
 
-$colorWhite: #FFFFFF;
+$colorWhite: #ffffff;
 $colorCyan: #03e9f4;
 
 %fake_checkbox_focus {
     outline: -webkit-focus-ring-color auto 1px;
 }
-
 
 body {
     width: 300px;
@@ -32,8 +31,8 @@ fieldset {
     border: none;
     outline: none;
 
-    input[type="text"],
-    input[type="number"] {
+    input[type='text'],
+    input[type='number'] {
         width: 100%;
         border: none;
         outline: none;
@@ -53,7 +52,6 @@ fieldset {
             margin: 0;
             display: none;
         }
-
     }
 
     label {
@@ -62,11 +60,11 @@ fieldset {
         display: block;
         margin-bottom: 20px;
 
-        &:focus>.fake-checkbox {
+        &:focus > .fake-checkbox {
             @extend %fake_checkbox_focus;
         }
 
-        input[type="checkbox"] {
+        input[type='checkbox'] {
             width: 20px;
             height: 20px;
             left: 55%;
@@ -75,7 +73,7 @@ fieldset {
             z-index: -1;
         }
 
-        input[type="checkbox"]:checked~.fake-checkbox::before {
+        input[type='checkbox']:checked ~ .fake-checkbox::before {
             display: block;
         }
 
@@ -102,7 +100,7 @@ fieldset {
                 left: 3px;
                 border-bottom: 3px solid $colorWhite;
                 border-left: 3px solid $colorWhite;
-                transform: rotate(-45deg) scale(.8);
+                transform: rotate(-45deg) scale(0.8);
             }
         }
     }

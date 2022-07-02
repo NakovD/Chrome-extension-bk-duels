@@ -10,11 +10,11 @@ submitButton.addEventListener('click', function () {
         highscorePage: highscorePage.value,
         topLvlThreshold: topLvlThreshold.value,
         bottomLvlThreshold: bottomLvlThreshold.value,
-        hasRegexElixir: hasRegexElixir.checked
-    }
+        hasRegexElixir: hasRegexElixir.checked,
+    };
 
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         const currentTab = tabs[0];
-        chrome.tabs.sendMessage(currentTab.id as number, data, function (response) { });
+        chrome.tabs.sendMessage(currentTab.id as number, data, function (response) {});
     });
 });
