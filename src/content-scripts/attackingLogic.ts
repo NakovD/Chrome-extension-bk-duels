@@ -8,7 +8,7 @@ const _hasRegenElixir = localStorage.getItem('hasRegexElixir') as string;
 const hasRegenElixir = parseBoolFromString(_hasRegenElixir);
 
 interface INextEnemyToDuelArgs {
-    allEnemiesCache: Element[];
+    allEnemiesCache?: Element[] | NodeListOf<Element>;
     topLvlThreshold: number;
     bottomLvlThreshold: number;
     lastAttackedEnemyIndex: number;
@@ -77,7 +77,7 @@ const attackPhase2 = () => {
 
 interface IShortDuelArgs {
     enemyNode: Element;
-    allEnemiesCache: Element[];
+    allEnemiesCache: Element[] | NodeListOf<Element>;
     topLvlThreshold: number;
     bottomLvlThreshold: number;
     lastAttackedEnemyIndex: number;

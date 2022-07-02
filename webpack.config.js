@@ -1,23 +1,27 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/content-scripts/index.js',
+    entry: {
+        contentScripts: './src/content-scripts/content.ts',
+        backgroundScripts: './src/background-scripts/background.ts',
+        extensionScripts: "./src/extension-scripts/popup.ts"
+    },
     mode: 'development',
     devtool: 'inline-source-map',
     output: {
-        filename: 'index.js',
+        filename: '[name].js',
         path: path.resolve(__dirname, 'dist'),
     },
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
+                test: /\.ts?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/,
             }
         ]
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js']
+        extensions: ['.ts']
     }
 };

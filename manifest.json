@@ -17,11 +17,11 @@
                 "https://s3-bg.battleknight.gameforge.com/*"
             ],
             "js": [
-                "dist/index.js"
+                "dist/contentScripts.js"
             ]
         }
     ],
     "background": {
-        "service_worker": "src/background.js"
+        "service_worker": "dist/backgroundScripts.js"
     }
 }

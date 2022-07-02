@@ -6,18 +6,19 @@
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "outDir": "./dist/",
+        // "outDir": "./dist/",
         "sourceMap": true,
-        "jsx": "react",
         "typeRoots": [
             "node_modules/@types"
         ]
     },
     "$schema": "https://json.schemastore.org/tsconfig",
     "display": "Recommended",
-    "include": [
-        "src/content-scripts/**/*"
-    ],
+    // "include": [
+    //     "src/content-scripts/**/*",
+    //     "src/extension-scripts/**/*",
+    //     "src/background-scripts/**/*"
+    // ],
     "exclude": [
         "node_modules",
         "**/*.spec.ts"

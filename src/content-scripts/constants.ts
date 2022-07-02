@@ -1,12 +1,4 @@
-interface IConstants {
-    localStorageCurrentStepLabel: string;
-    localStoragelastAttackedEnemyLabel: string;
-    extensionWorkingLabel: string;
-    FIVE_MINS: number;
-    OVER_TIME: number;
-    minimumHealth: number;
-}
-
+import { IConstants } from "./models";
 
 const constants: IConstants = {
     localStorageCurrentStepLabel: 'currentStep',

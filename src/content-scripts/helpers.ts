@@ -8,7 +8,7 @@ const getAmountToWaitAfterDuel = (hasRegenElixir: boolean): number => {
 }
 
 const parseBoolFromString = (boolAsString: string): boolean => {
-    return (boolAsString?.toLowerCase() === 'true');
+    return (boolAsString.toLowerCase() === 'true');
 }
 
 export { getAmountToWaitAfterDuel, parseBoolFromString };
