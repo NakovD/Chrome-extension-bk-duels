@@ -1,10 +1,10 @@
 import labels from './localStorageLabels';
 import { parseBoolFromString, getAmountToWaitAfterDuel } from './helpers';
 
-const { currentStepLabel, lastAttackedEnemyIndexLabel } = labels;
+const { currentStepLabel, lastAttackedEnemyIndexLabel, hasRegexElixirLabel } = labels;
 const currentStep = +(localStorage.getItem(currentStepLabel) as string);
 
-const _hasRegenElixir = localStorage.getItem('hasRegexElixir') as string;
+const _hasRegenElixir = localStorage.getItem(hasRegexElixirLabel) as string;
 const hasRegenElixir = parseBoolFromString(_hasRegenElixir);
 
 interface INextEnemyToDuelArgs {
