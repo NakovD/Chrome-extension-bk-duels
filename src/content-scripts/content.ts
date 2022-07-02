@@ -1,10 +1,18 @@
-import constants from './constants';
 import { getNextEnemyToTryDuel, tryToDuel, attackPhase2, waitAfterDuel } from './attackingLogic';
+import constants from './constants';
+import labels from './localStorageLabels';
 import localStorageData from './localStorageData';
 
-//labels
-const { localStorageCurrentStepLabel, extensionWorkingLabel, localStoragelastAttackedEnemyLabel } =
-    constants;
+const {
+    currentStepLabel,
+    highscorePageLabel,
+    topLvlThresholdLabel,
+    bottomLvlThresholdLabel,
+    hasRegexElixirLabel,
+    bkExtensionsWorkingLabel,
+} = labels;
+
+const { minimumHealth } = constants;
 
 const {
     currentStep,
@@ -15,8 +23,6 @@ const {
     bkExtensionsWorking,
 } = localStorageData;
 
-const { minimumHealth } = constants;
-
 const health = +((document.querySelector('#lifeCount') as HTMLElement).textContent as string);
 
 const goToHighScores = () => {
@@ -24,14 +30,14 @@ const goToHighScores = () => {
         return;
     }
     const highScoresButton = document.querySelector('#navScores') as HTMLButtonElement;
-    localStorage.setItem(localStorageCurrentStepLabel, '1');
+    localStorage.setItem(currentStepLabel, '1');
     highScoresButton.click();
 };
 
 const sortBylevel = () => {
     if (currentStep !== 1) return;
     const sortByLevelIcon = document.querySelector('.iconLevel') as HTMLElement;
-    localStorage.setItem(localStorageCurrentStepLabel, '2');
+    localStorage.setItem(currentStepLabel, '2');
     sortByLevelIcon.click();
 };
 
@@ -39,7 +45,7 @@ const choosePage = () => {
     if (currentStep !== 2) return;
     const select = document.querySelector('#highscoreOffset') as HTMLSelectElement;
     select.value = highscorePage.toString();
-    localStorage.setItem(localStorageCurrentStepLabel, '3');
+    localStorage.setItem(currentStepLabel, '3');
     select.dispatchEvent(new Event('change'));
 };
 
@@ -64,12 +70,12 @@ const handleHealingResult = () => {
     setTimeout(() => {
         const isHealSuccessful = heal();
         if (isHealSuccessful) {
-            localStorage.setItem(localStorageCurrentStepLabel, '0');
+            localStorage.setItem(currentStepLabel, '0');
             location.reload();
             return;
         }
 
-        localStorage.setItem(extensionWorkingLabel, 'false');
+        localStorage.setItem(bkExtensionsWorkingLabel, 'false');
     }, 1000);
 };
 
@@ -123,11 +129,11 @@ reinitExtension(bkExtensionsWorking);
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     const { highscorePage, topLvlThreshold, bottomLvlThreshold, hasRegexElixir } = request;
     localStorage.clear();
-    localStorage.setItem('highscorePage', highscorePage);
-    localStorage.setItem('topLvlThreshold', topLvlThreshold);
-    localStorage.setItem('bottomLvlThreshold', bottomLvlThreshold);
-    localStorage.setItem(extensionWorkingLabel, 'true');
-    localStorage.setItem('hasRegexElixir', hasRegexElixir);
+    localStorage.setItem(highscorePageLabel, highscorePage);
+    localStorage.setItem(topLvlThresholdLabel, topLvlThreshold);
+    localStorage.setItem(bottomLvlThresholdLabel, bottomLvlThreshold);
+    localStorage.setItem(bkExtensionsWorkingLabel, 'true');
+    localStorage.setItem(hasRegexElixirLabel, hasRegexElixir);
 
     fightDuels();
     sendResponse({ farewell: 'goodbye' });
