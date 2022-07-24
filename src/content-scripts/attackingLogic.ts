@@ -1,5 +1,5 @@
 import labels from './localStorageLabels';
-import { parseBoolFromString, getAmountToWaitAfterDuel } from './helpers';
+import { getAmountToWaitAfterDuel } from './helpers';
 import localStorageData from './localStorageData';
 
 const { currentStepLabel, lastAttackedEnemyIndexLabel } = labels;

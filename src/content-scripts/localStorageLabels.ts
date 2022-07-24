@@ -1,4 +1,4 @@
-import { ILocalStorageData } from './models';
+import { ILocalStorageData } from './models/localStorateData';
 import { nameof } from 'ts-simple-nameof';
 
 export default {

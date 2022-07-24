@@ -1,4 +1,4 @@
-import { IConstants } from './models';
+import { IConstants } from './models/contants';
 
 const constants: IConstants = {
     FIVE_MINS: 300_000,

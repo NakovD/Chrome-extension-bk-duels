@@ -6,8 +6,16 @@
     padding: 0;
 }
 
+button {
+    outline: none;
+    border: none;
+    padding: 10px;
+}
+
 $colorWhite: #ffffff;
 $colorCyan: #03e9f4;
+$colorPurple: #af40ff;
+$colorPurple1: #5b42f3;
 
 %fake_checkbox_focus {
     outline: -webkit-focus-ring-color auto 1px;
@@ -110,8 +118,12 @@ form {
     button {
         border: 1px solid $colorCyan;
         color: $colorCyan;
-        padding: 10px;
         background-color: transparent;
-        cursor: pointer;
     }
+}
+
+#bk-stop-extension {
+    margin-top: 30px;
+    background-image: linear-gradient(144deg, $colorPurple, $colorPurple1 50%, $colorCyan);
+    color: $colorWhite;
 }

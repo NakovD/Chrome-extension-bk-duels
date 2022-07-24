@@ -1,5 +1,5 @@
 import { parseBoolFromString } from './helpers';
-import { ILocalStorageData } from './models';
+import { ILocalStorageData } from './models/localStorateData';
 import labels from './localStorageLabels';
 
 const {
@@ -20,7 +20,7 @@ const bottomLvlThreshold = localStorage.getItem(bottomLvlThresholdLabel) ?? Numb
 const hasRegenElixir = localStorage.getItem(hasRegenElixirLabel) ?? 'false';
 const isExtensionWorking = localStorage.getItem(bkExtensionsWorkingLabel) ?? 'false';
 
-const isAnyNeededDataNull = currentStep && highscorePage;
+const isAnyNeededDataNull = !currentStep || !highscorePage;
 
 const localStorageData: ILocalStorageData = {
     currentStep: currentStep ? +currentStep : 0,
