@@ -55,10 +55,11 @@ const checkHealth = () => {
 };
 
 const heal = () => {
-    const potions = document.querySelectorAll('.sourceInventory');
-    if (!potions.length) return false;
-    const firstPotion = potions[0].querySelector('a') as HTMLAnchorElement;
-    firstPotion.click();
+    const potionsOf50Health = document.querySelectorAll(
+        '.sourceInventory a.itemPotionRed50'
+    ) as NodeListOf<HTMLAnchorElement>;
+    if (!potionsOf50Health.length) return false;
+    potionsOf50Health[0].click();
     const confirmHealButton = document.querySelector(
         '#topPotionPopup .button:first-child'
     ) as HTMLButtonElement;
