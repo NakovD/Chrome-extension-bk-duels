@@ -2,6 +2,7 @@ import { getNextEnemyToTryDuel, tryToDuel, attackPhase2, waitAfterDuel } from '.
 import constants from './constants';
 import labels from './localStorageLabels';
 import localStorageData from './localStorageData';
+import { IExtensionInitialData } from '../extension-scripts/models/extensionInitialData';
 
 const {
     currentStepLabel,
@@ -128,14 +129,24 @@ const reinitExtension = (bkExtensionsWorking: boolean) => {
 reinitExtension(bkExtensionsWorking);
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    const { highscorePage, topLvlThreshold, bottomLvlThreshold, hasRegenElixir } = request;
+    const {
+        bkExtensionWorking,
+        highscorePage,
+        topLvlThreshold,
+        bottomLvlThreshold,
+        hasRegenElixir,
+    } = request as IExtensionInitialData;
+
     localStorage.clear();
-    localStorage.setItem(highscorePageLabel, highscorePage);
-    localStorage.setItem(topLvlThresholdLabel, topLvlThreshold);
-    localStorage.setItem(bottomLvlThresholdLabel, bottomLvlThreshold);
-    localStorage.setItem(bkExtensionsWorkingLabel, 'true');
-    localStorage.setItem(hasRegenElixirLabel, hasRegenElixir);
+    localStorage.setItem(bkExtensionsWorkingLabel, `${bkExtensionWorking}`);
+    if (!bkExtensionWorking)
+        return sendResponse({ message: 'Extension stopped working', success: true });
+
     localStorage.setItem(currentStepLabel, '0');
+    localStorage.setItem(highscorePageLabel, highscorePage);
+    localStorage.setItem(hasRegenElixirLabel, `${hasRegenElixir}`);
+    localStorage.setItem(topLvlThresholdLabel, `${topLvlThreshold}`);
+    localStorage.setItem(bottomLvlThresholdLabel, `${bottomLvlThreshold}`);
 
     fightDuels();
     sendResponse({ farewell: 'goodbye' });
